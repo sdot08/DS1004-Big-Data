@@ -25,13 +25,5 @@ weekday.createOrReplaceTempView("weekday")
 
 result = spark.sql("SELECT vc.violation_code, COALESCE(weekend_count, 0) as weekend_count_, COALESCE(weekday_count, 0) as weekday_count_ FROM vc LEFT JOIN weekend on vc.violation_code = weekend.violation_code \
 	LEFT JOIN weekday on vc.violation_code = weekday.violation_code")
-#result = spark.sql("SELECT vc.violation_code, IIF(ISNULL(weekend_count), 0, weekend_count), IIF(ISNULL(weekday_count), 0, weekday_count) FROM vc LEFT JOIN weekend on vc.violation_code = weekend.violation_code \
-#	LEFT JOIN weekday on vc.violation_code = weekday.violation_code")
 
-#result = spark.sql("SELECT vc.violation_code, weekend_count, weekday_count FROM vc LEFT JOIN weekend on vc.violation_code = weekend.violation_code \
-#	LEFT JOIN weekday on vc.violation_code = weekday.violation_code")
-
-
-#result = spark.sql("SELECT violation_code, weekend_count, weekday_count FROM result_0 ")
-#SELECT ISNULL(myColumn, 0 ) FROM myTable
 result.select(format_string('%s\t%.2f, %.2f',result.violation_code,result.weekend_count_,result.weekday_count_)).write.save("task7-sql.out",format="text")
