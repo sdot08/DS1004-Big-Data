@@ -1,0 +1,7 @@
+1. the number of columns are not consistent in not both datasets
+
+2. there are missing values or blank values in 'State' column in open-violations.csv
+
+3. There are invalid values like '99' in 'State' Column in parking-violations.csv.
+
+4. There are invalid values like 'blankplate' and 'N/A'  in 'plateid' Column in parking-violations.csv.
